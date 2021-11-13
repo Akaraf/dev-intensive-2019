@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.models
 
+import java.util.*
+
 class Bender(
     var status: Status = Status.NORMAL,
     var question: Question = Question.NAME) {
@@ -16,7 +18,7 @@ class Bender(
     fun listenAnswer(answer: String) : Pair<String, Triple<Int, Int, Int>> = when {
             question == Question.IDLE -> "На этом все, вопросов больше нет" to status.color
             !question.validationCompliance(answer) -> "${question.validationText}\n${question.question}" to status.color
-            question.answers.contains(answer.lowercase()) -> {
+            question.answers.contains(answer.toLowerCase()) -> {
                 question = question.nextQuestion()
                 "Отлично - ты справился\n${question.question}" to status.color
             }
@@ -47,13 +49,13 @@ class Bender(
         NAME("Как меня зовут?", listOf("бендер", "bender"), "Имя должно начинаться с заглавной буквы") {
             override fun nextQuestion(): Question = PROFESSION
             override fun validationCompliance(answer: String): Boolean {
-                return answer[0].toString() != answer[0].lowercase()
+                return answer[0].toString() != answer[0].toString().toLowerCase(Locale.ROOT)
             }
         },
         PROFESSION("Назови мою профессию?", listOf("сгибальщик", "bender"), "Профессия должна начинаться со строчной буквы") {
             override fun nextQuestion(): Question = MATERIAL
             override fun validationCompliance(answer: String): Boolean {
-                return answer[0].toString() != answer[0].uppercase()
+                return answer[0].toString() != answer[0].toString().toUpperCase(Locale.ROOT)
             }
         },
         MATERIAL("Из чего я сделан?", listOf("металл", "дерево", "metal", "iron", "wood"), "Материал не должен содержать цифр") {
