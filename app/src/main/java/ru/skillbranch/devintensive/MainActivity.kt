@@ -105,6 +105,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             messageEt.setText("")
             return
         }
+        hideKeyboard()
         val (phrase, color) = benderObj.listenAnswer(messageText)
         messageEt.setText("")
         val (r, g, b) = color

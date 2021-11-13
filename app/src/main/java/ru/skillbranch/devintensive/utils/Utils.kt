@@ -32,8 +32,8 @@ object Utils {
                 alphabetCheck(currentSymbol) -> currentSymbol
                 translationMap[currentSymbol] != null -> translationMap[currentSymbol]
                 else -> {
-                    var lowUpString = translationMap[currentSymbol.toLowerCase(Locale("ru"))] ?: ""
-                    if (lowUpString != "") lowUpString = lowUpString[0].toString().toUpperCase(Locale("en")) + lowUpString.substring(1)
+                    var lowUpString = translationMap[currentSymbol.lowercase(Locale("ru"))] ?: ""
+                    if (lowUpString != "") lowUpString = lowUpString[0].uppercase(Locale("en")) + lowUpString.substring(1)
                     lowUpString
                 }
             }
@@ -48,8 +48,8 @@ object Utils {
 
 
     fun toInitials(firstName: String?, lastName: String?): String? {
-        val firstInitial: String? = checkNotBlankString(firstName)?.get(0)?.toString()?.toUpperCase(Locale("ru"))
-        val secondInitial: String? = checkNotBlankString(lastName)?.get(0)?.toString()?.toUpperCase(Locale("ru"))
+        val firstInitial: String? = checkNotBlankString(firstName)?.get(0)?.uppercase(Locale("ru"))
+        val secondInitial: String? = checkNotBlankString(lastName)?.get(0)?.uppercase(Locale("ru"))
         return if (firstInitial != null || secondInitial != null) "${firstInitial ?: ""}${secondInitial ?: ""}"
         else null
     }
