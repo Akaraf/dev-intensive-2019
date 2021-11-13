@@ -48,13 +48,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         sendBtn.setOnClickListener(this)
         messageEt.setOnEditorActionListener { view, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                hideKeyboard()
                 sendAnswer()
+                hideKeyboard()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
         }
-        hideKeyboard()
     }
 
     override fun onRestart() {
@@ -106,7 +105,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             messageEt.setText("")
             return
         }
-        hideKeyboard()
         val (phrase, color) = benderObj.listenAnswer(messageText)
         messageEt.setText("")
         val (r, g, b) = color
