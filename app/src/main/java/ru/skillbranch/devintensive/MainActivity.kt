@@ -48,12 +48,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         sendBtn.setOnClickListener(this)
         messageEt.setOnEditorActionListener { view, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_DONE) {
-                sendAnswer()
                 hideKeyboard()
+                sendAnswer()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
         }
+        hideKeyboard()
     }
 
     override fun onRestart() {
